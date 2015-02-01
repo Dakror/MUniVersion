@@ -23,7 +23,11 @@ public class MUniVersion {
 		phase = parsePhase(p);
 		version = parseVersion(v);
 		
-		if (!offline && !isUpToDate() && JOptionPane.showConfirmDialog(null, "Es ist eine Aktualisierung verfügbar.\nMöchten Sie sie jetzt herunterladen?\nStarten Sie bitte nach der Aktualisierung die Anwendung erneut.", "Aktualisierung verfügbar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null) == 0) {
+		if (!offline
+				&& !isUpToDate()
+				&& JOptionPane.showConfirmDialog(	null,
+																					"Es ist eine Aktualisierung verfügbar.\nMöchten Sie sie jetzt herunterladen?\nStarten Sie bitte nach der Aktualisierung die Anwendung erneut.",
+																					"Aktualisierung verfügbar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null) == 0) {
 			try {
 				Desktop.getDesktop().browse(new URL(("http://dakror.de/download?u=" + r + "/" + n + ".jar").replace(" ", "%20")).toURI());
 				System.exit(0);
@@ -70,9 +74,9 @@ public class MUniVersion {
 	
 	private static int parseVersion(String version) {
 		if (version.contains("$")) // unbuilt
-		return -1;
+			return -1;
 		if (version.contains("-")) // jenkins ignores maven.build.timestamp.format
-		return Integer.parseInt(version.substring(2).replace("-", ""));
+			return Integer.parseInt(version.substring(2).replace("-", ""));
 		return Integer.parseInt(version);
 	}
 }
